@@ -327,10 +327,11 @@ class AndroidFlutterLocalNotificationsPlugin
     int id,
     String? title,
     String? body,
-    RepeatInterval repeatInterval, {
-    AndroidNotificationDetails? notificationDetails,
-    String? payload,
-    AndroidScheduleMode scheduleMode = AndroidScheduleMode.exact,
+    RepeatInterval repeatInterval,
+    int? repeatNumber, {
+      AndroidNotificationDetails? notificationDetails,
+      String? payload,
+      AndroidScheduleMode scheduleMode = AndroidScheduleMode.exact,
   }) async {
     validateId(id);
     await _channel.invokeMethod('periodicallyShow', <String, Object?>{
@@ -339,6 +340,7 @@ class AndroidFlutterLocalNotificationsPlugin
       'body': body,
       'calledAt': clock.now().millisecondsSinceEpoch,
       'repeatInterval': repeatInterval.index,
+      'repeatNumber': repeatNumber ?? 1,
       'platformSpecifics':
           _buildPlatformSpecifics(notificationDetails, scheduleMode),
       'payload': payload ?? '',
@@ -691,7 +693,8 @@ class IOSFlutterLocalNotificationsPlugin
     int id,
     String? title,
     String? body,
-    RepeatInterval repeatInterval, {
+    RepeatInterval repeatInterval,
+    int? repeatNumber, {
     DarwinNotificationDetails? notificationDetails,
     String? payload,
   }) async {
@@ -702,6 +705,7 @@ class IOSFlutterLocalNotificationsPlugin
       'body': body,
       'calledAt': clock.now().millisecondsSinceEpoch,
       'repeatInterval': repeatInterval.index,
+      'repeatNumber': repeatNumber ?? 1,
       'platformSpecifics': notificationDetails?.toMap(),
       'payload': payload ?? ''
     });
@@ -843,7 +847,8 @@ class MacOSFlutterLocalNotificationsPlugin
     int id,
     String? title,
     String? body,
-    RepeatInterval repeatInterval, {
+    RepeatInterval repeatInterval,
+    int? repeatNumber, {
     DarwinNotificationDetails? notificationDetails,
     String? payload,
   }) async {
@@ -854,6 +859,7 @@ class MacOSFlutterLocalNotificationsPlugin
       'body': body,
       'calledAt': clock.now().millisecondsSinceEpoch,
       'repeatInterval': repeatInterval.index,
+      'repeatNumber': repeatNumber ?? 1,
       'platformSpecifics': notificationDetails?.toMap(),
       'payload': payload ?? ''
     });

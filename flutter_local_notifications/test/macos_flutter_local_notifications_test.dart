@@ -216,6 +216,7 @@ void main() {
               'notification title',
               'notification body',
               repeatInterval,
+              null,
               notificationDetails,
             );
 

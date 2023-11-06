@@ -1848,6 +1848,7 @@ void main() {
               'notification title',
               'notification body',
               repeatInterval,
+              null,
               const NotificationDetails(android: androidNotificationDetails),
             );
 

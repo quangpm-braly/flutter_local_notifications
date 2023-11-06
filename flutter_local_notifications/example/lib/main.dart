@@ -1860,6 +1860,7 @@ class _HomePageState extends State<HomePage> {
       'repeating title',
       'repeating body',
       RepeatInterval.everyMinute,
+      1,
       notificationDetails,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     );

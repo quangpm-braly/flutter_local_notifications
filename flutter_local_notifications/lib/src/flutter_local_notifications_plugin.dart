@@ -408,6 +408,7 @@ class FlutterLocalNotificationsPlugin {
     String? title,
     String? body,
     RepeatInterval repeatInterval,
+    int? repeatNumber,
     NotificationDetails notificationDetails, {
     String? payload,
     @Deprecated('Deprecated in favor of the androidScheduleMode parameter')
@@ -420,7 +421,7 @@ class FlutterLocalNotificationsPlugin {
     if (defaultTargetPlatform == TargetPlatform.android) {
       await resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>()
-          ?.periodicallyShow(id, title, body, repeatInterval,
+          ?.periodicallyShow(id, title, body, repeatInterval, repeatNumber,
               notificationDetails: notificationDetails.android,
               payload: payload,
               scheduleMode: _chooseScheduleMode(
@@ -428,16 +429,16 @@ class FlutterLocalNotificationsPlugin {
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       await resolvePlatformSpecificImplementation<
               IOSFlutterLocalNotificationsPlugin>()
-          ?.periodicallyShow(id, title, body, repeatInterval,
+          ?.periodicallyShow(id, title, body, repeatInterval, repeatNumber,
               notificationDetails: notificationDetails.iOS, payload: payload);
     } else if (defaultTargetPlatform == TargetPlatform.macOS) {
       await resolvePlatformSpecificImplementation<
               MacOSFlutterLocalNotificationsPlugin>()
-          ?.periodicallyShow(id, title, body, repeatInterval,
+          ?.periodicallyShow(id, title, body, repeatInterval, repeatNumber,
               notificationDetails: notificationDetails.macOS, payload: payload);
     } else {
       await FlutterLocalNotificationsPlatform.instance
-          .periodicallyShow(id, title, body, repeatInterval);
+          .periodicallyShow(id, title, body, repeatInterval, repeatNumber);
     }
   }
 
